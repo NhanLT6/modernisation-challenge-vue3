@@ -2,5 +2,20 @@
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": true,
-  "singleQuote": true
+  "singleQuote": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^vue$",
+    "<THIRD_PARTY_MODULES>",
+    "^api(.*)$",
+    "^app/(.*)$",
+    "^asset/(.*)$",
+    "^common/(.*)$",
+    "^components/(.*)$",
+    "^features/(.*)$",
+    "(.css)|(.scss)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
