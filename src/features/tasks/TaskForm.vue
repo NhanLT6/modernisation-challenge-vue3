@@ -4,9 +4,10 @@ import { useForm } from 'vee-validate';
 import { useToast } from 'vue-toastification';
 import { object, string } from 'yup';
 
-import { UpsertTaskRequest } from '../../apis/tasks/UpsertTaskRequest.ts';
-import { createTask, updateTask } from '../../apis/tasks/taskApi.ts';
-import AppTextarea from '../../components/AppTextarea.vue';
+import { UpsertTaskRequest } from '@/apis/tasks/UpsertTaskRequest.ts';
+import { createTask, updateTask } from '@/apis/tasks/taskApi.ts';
+
+import AppTextarea from '@/components/AppTextarea.vue';
 
 export interface TaskFormData {
   id?: number;

@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 
 import { useToast } from 'vue-toastification';
 
-import { TaskResponse } from '../../apis/tasks/TaskResponse.ts';
-import { deleteTask, getTasks, updateTaskCompleteStatus } from '../../apis/tasks/taskApi.ts';
-import AppCheckbox from '../../components/AppCheckbox.vue';
-import AppDialog from '../../components/AppDialog.vue';
-import AppTable from '../../components/table/AppTable.vue';
-import { TableColumn } from '../../components/table/types/TableColumn.ts';
-import { TableRow } from '../../components/table/types/TableRow.ts';
+import { TaskResponse } from '@/apis/tasks/TaskResponse.ts';
+import { deleteTask, getTasks, updateTaskCompleteStatus } from '@/apis/tasks/taskApi.ts';
+
+import AppCheckbox from '@/components/AppCheckbox.vue';
+import AppDialog from '@/components/AppDialog.vue';
+import AppTable from '@/components/table/AppTable.vue';
+import { TableColumn } from '@/components/table/types/TableColumn.ts';
+import { TableRow } from '@/components/table/types/TableRow.ts';
+
 import TaskForm, { TaskFormData } from './TaskForm.vue';
 
 const toast = useToast();
@@ -23,6 +25,10 @@ const columns: TableColumn[] = [
   { field: 'completed', title: 'Completed', thProps: { class: 'w-1' } },
   { field: 'details', title: 'Details' },
 ];
+
+const dialogTitle = computed(() => {
+  return editingTask.value?.id ? 'Edit Task' : 'Create Task';
+});
 
 const fetchTasks = async () => {
   try {
@@ -86,6 +92,7 @@ watch([showDialog], fetchTasks); // Reload tasks when Editing dialog closed
   <AppTable
     :columns="columns"
     :data="data as TableRow[]"
+    addNewText="+ Create a new task"
     @create="onCreateTask"
     @edit="onEditTask"
     @delete="onDeleteTask"
@@ -98,7 +105,7 @@ watch([showDialog], fetchTasks); // Reload tasks when Editing dialog closed
     </template>
   </AppTable>
 
-  <AppDialog ref="dialogRef" v-model="showDialog" :title="'Task'">
+  <AppDialog ref="dialogRef" v-model="showDialog" :title="dialogTitle">
     <template v-slot="{ close }">
       <TaskForm :initialValues="editingTask" @submit="close" @cancel="close" />
     </template>

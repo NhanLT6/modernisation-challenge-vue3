@@ -19,7 +19,7 @@ const onClose = () => {
   >
     <!-- Dialog -->
     <div
-      class="flex flex-col my-6 mx-auto p-6 max-h-[calc(100vh-50px)] min-h-[250px] max-w-md bg-white rounded-md shadow-md"
+      class="flex flex-col my-6 mx-auto p-6 max-h-[calc(100vh-50px)] min-h-[250px] w-[750px] bg-white rounded-md shadow-md"
     >
       <!-- Title and Close button -->
       <div class="flex justify-between mb-6">

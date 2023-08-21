@@ -22,13 +22,7 @@ const handleDelete = (slotProps: any) => {
 </script>
 
 <template>
-  <Popper
-    ref="popperRef"
-    :show="isShowingPopper"
-    :disableClickAway="false"
-    placement="bottom-start"
-    @close:popper="isShowingPopper = false"
-  >
+  <Popper ref="popperRef" :show="isShowingPopper" placement="bottom-start" @close:popper="isShowingPopper = false">
     <button
       :class="['popup-menu', { focus: isShowingPopper }]"
       type="button"

@@ -7,7 +7,7 @@ interface AppTableProps {
   columns: TableColumn[];
   data: TableRow[];
   caption?: string;
-  viewOnly?: boolean;
+  addNewText?: string;
 }
 
 const props = defineProps<AppTableProps>();
@@ -74,10 +74,10 @@ const handleDelete = (data: TableRow) => {
         </tr>
 
         <!-- Add new -->
-        <tr v-if="!props.viewOnly">
+        <tr>
           <td colspan="99" class="border-t py-[15px] px-3 transition-colors ease-in-out">
             <button class="text-[#00b2d5] decoration-0 hover:underline" @click="$emit('create')">
-              + Create a new task
+              {{ props.addNewText ?? '+ Create' }}
             </button>
           </td>
         </tr>

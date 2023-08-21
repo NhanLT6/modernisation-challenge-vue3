@@ -8,12 +8,12 @@
   "importOrder": [
     "^vue$",
     "<THIRD_PARTY_MODULES>",
-    "^api(.*)$",
-    "^app/(.*)$",
-    "^asset/(.*)$",
-    "^common/(.*)$",
-    "^components/(.*)$",
-    "^features/(.*)$",
+    "^@/api(.*)$",
+    "^@/app/(.*)$",
+    "^@/asset/(.*)$",
+    "^@/common/(.*)$",
+    "^@/components/(.*)$",
+    "^@/features/(.*)$",
     "(.css)|(.scss)$",
     "^[./]"
   ],
