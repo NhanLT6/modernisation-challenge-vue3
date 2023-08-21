@@ -1,0 +1,9 @@
+.required::after {
+  color: #f2405c;
+  content: 'Required';
+  float: right;
+  font:
+    normal 14px 'Poppins',
+    sans-serif;
+  margin-left: 18px;
+}

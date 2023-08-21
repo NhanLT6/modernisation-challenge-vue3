@@ -1,22 +1,22 @@
 import { createApp } from 'vue';
 
 import { createPinia } from 'pinia';
-import Toast, {
-  POSITION,
-  PluginOptions as ToastOptions,
-} from 'vue-toastification';
+import Toast, { POSITION, PluginOptions as ToastOptions } from 'vue-toastification';
 
 import './style.css';
 import 'vue-toastification/dist/index.css';
 
 import App from './App.vue';
 
-const pinia = createPinia();
 const app = createApp(App);
 
+const pinia = createPinia();
+
 const toastOptions: ToastOptions = {
-  position: POSITION.BOTTOM_RIGHT,
+  position: POSITION.TOP_CENTER,
   hideProgressBar: true,
+  transition: 'Vue-Toastification__fade',
+  maxToasts: 1,
 };
 
 app.use(pinia);
