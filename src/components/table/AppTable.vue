@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import TableActions from './TableActions.vue';
+import TableAddNewButton from '@/components/table/components/TableAddNewButton.vue';
+import TableHeader from '@/components/table/components/TableHeader.vue';
+
+import TableActions from './components/TableActions.vue';
 import { TableColumn } from './types/TableColumn.ts';
 import { TableRow } from './types/TableRow.ts';
 
@@ -19,12 +22,10 @@ const emit = defineEmits<{
 }>();
 
 const handleEdit = (data: TableRow) => {
-  console.log('Edit data', data);
   emit('edit', data);
 };
 
 const handleDelete = (data: TableRow) => {
-  console.log('Delete data', data);
   emit('delete', data);
 };
 </script>
@@ -40,21 +41,7 @@ const handleDelete = (data: TableRow) => {
       </caption>
 
       <!-- Table headers, rendered base on props.columns -->
-      <thead class="uppercase whitespace-nowrap">
-        <tr>
-          <th
-            v-for="{ field, title, thProps } in props.columns"
-            :key="field"
-            :class="['bg-[#e7eaf5] font-semibold p-3', thProps?.class ?? '']"
-            v-bind="thProps"
-          >
-            {{ title }}
-          </th>
-
-          <!-- Actions -->
-          <th class="w-1 bg-[#e7eaf5] font-semibold p-3"></th>
-        </tr>
-      </thead>
+      <TableHeader :columns="props.columns" />
 
       <!-- Table body, rendered base on props.data -->
       <tbody class="bg-white">
@@ -74,13 +61,7 @@ const handleDelete = (data: TableRow) => {
         </tr>
 
         <!-- Add new -->
-        <tr>
-          <td colspan="99" class="border-t py-[15px] px-3 transition-colors ease-in-out">
-            <button class="text-[#00b2d5] decoration-0 hover:underline" @click="$emit('create')">
-              {{ props.addNewText ?? '+ Create' }}
-            </button>
-          </td>
-        </tr>
+        <TableAddNewButton :addNewText="props.addNewText" @click="$emit('create')" />
       </tbody>
     </table>
   </div>

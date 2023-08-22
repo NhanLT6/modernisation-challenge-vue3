@@ -24,7 +24,10 @@ const handleDelete = (slotProps: any) => {
 <template>
   <Popper ref="popperRef" :show="isShowingPopper" placement="bottom-start" @close:popper="isShowingPopper = false">
     <button
-      :class="['popup-menu', { focus: isShowingPopper }]"
+      :class="[
+        { focus: isShowingPopper },
+        'popup-bg flex items-center justify-around p-2 h-[36px] w-[36px] bg-white rounded-full hover:bg-[#00a0bf14]',
+      ]"
       type="button"
       @click="isShowingPopper = !isShowingPopper"
     ></button>
@@ -48,15 +51,7 @@ const handleDelete = (slotProps: any) => {
   background: url('src/assets/three-dots.svg') no-repeat center center;
 }
 
-.popup-menu {
-  @apply popup-bg flex items-center justify-around p-2 h-[36px] w-[36px] bg-white rounded-full;
-}
-
-.popup-menu:hover {
-  background-color: #00a0bf14;
-}
-
-.popup-menu.focus {
+.focus {
   background-color: #00a0bf14;
   box-shadow: none;
   transition: none;

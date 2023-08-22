@@ -3,7 +3,7 @@ import { TaskResponse } from './TaskResponse.ts';
 import { UpsertTaskRequest } from './UpsertTaskRequest.ts';
 
 const getTasks = async (): Promise<TaskResponse[]> => {
-  const { data } = await api.get<TaskResponse[]>('/tasks');
+  const { data } = await api.get<TaskResponse[]>('/tasks?PageSize=-1'); // Set PageSize=-1 to skip pagination
 
   return data;
 };
@@ -27,7 +27,7 @@ const updateTask = async (id: number, request: UpsertTaskRequest): Promise<TaskR
 };
 
 const updateTaskCompleteStatus = async (id: number, isComplete: boolean): Promise<TaskResponse> => {
-  const { data } = await api.put<TaskResponse>(`/tasks/${id}/status/`, isComplete);
+  const { data } = await api.put<TaskResponse>(`/tasks/${id}/status/${isComplete}`);
 
   return data;
 };
