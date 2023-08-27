@@ -71,7 +71,6 @@ const onDeleteTask = async (data: TableRow) => {
 const onCompleteStatusChanged = async (data: TableRow, isCompleted: boolean) => {
   try {
     const id = typeof data.id === 'string' ? parseInt(data.id) : data.id;
-    console.log('id', id, isCompleted);
     await updateTaskCompleteStatus(id, isCompleted);
 
     await fetchTasks();
@@ -83,7 +82,10 @@ const onCompleteStatusChanged = async (data: TableRow, isCompleted: boolean) => 
 // Get Tasks on mounted
 onMounted(fetchTasks);
 
-watch([showDialog], fetchTasks); // Reload tasks when Editing dialog closed
+// Reload tasks when Editing dialog closed
+watch([showDialog], () => {
+  if (!showDialog.value) fetchTasks();
+});
 </script>
 
 <template>

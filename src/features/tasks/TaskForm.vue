@@ -40,10 +40,10 @@ const onSubmit = async () => {
   try {
     // Force validating form to display error toast
     // Bad UX, field's error should stay next to field and persistence
-    const isFormValid = (await validate()).valid; // Object.keys(errors).length > 0;
+    const isFormValid = (await validate()).valid;
     if (!isFormValid) {
       toast.error("One or more required fields haven't been filled in.");
-      console.log('form errors', isFormValid, JSON.stringify(errors.value, null, 2));
+      console.log('form errors', JSON.stringify(errors.value, null, 2));
       return;
     }
 
