@@ -12,14 +12,14 @@ const props = defineProps<{
       <th
         v-for="{ field, title, thProps } in props.columns"
         :key="field"
-        :class="['bg-[#e7eaf5] font-semibold p-3', thProps?.class ?? '']"
+        :class="[thProps?.class ?? '']"
         v-bind="thProps"
       >
         {{ title }}
       </th>
 
       <!-- Actions -->
-      <th class="w-1 bg-[#e7eaf5] font-semibold p-3"></th>
+      <th class="w-1"></th>
     </tr>
   </thead>
 </template>

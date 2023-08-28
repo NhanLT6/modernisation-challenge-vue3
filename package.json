@@ -19,10 +19,12 @@
     "vue-router": "4",
     "vue-toastification": "^2.0.0-rc.5",
     "vue3-popper": "^1.5.0",
+    "vuetify": "^3.3.14",
     "yarn": "^1.22.19",
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@mdi/font": "^7.2.96",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/node": "^20.5.1",
     "@typescript-eslint/eslint-plugin": "^6.4.0",

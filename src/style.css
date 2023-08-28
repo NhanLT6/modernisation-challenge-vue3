@@ -26,11 +26,11 @@
 
 @layer base {
   h1 {
-    @apply font-semibold text-[26px] mb-[25px] tracking-normal overflow-hidden text-ellipsis whitespace-nowrap;
+    @apply font-semibold text-[26px] tracking-normal overflow-hidden text-ellipsis whitespace-nowrap;
   }
 
   h2 {
-    @apply font-semibold text-[20px] mb-[25px] tracking-normal overflow-hidden text-ellipsis whitespace-nowrap;
+    @apply font-semibold text-[20px] tracking-normal overflow-hidden text-ellipsis whitespace-nowrap;
   }
 }
 

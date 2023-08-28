@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, watchEffect } from 'vue';
+
 const props = defineProps<{
   modelValue: boolean;
   title?: string;
@@ -6,39 +8,34 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:modelValue', 'ok', 'cancel']);
 
+const showDialog = ref<boolean>(props.modelValue);
+
+// Update showDialog value when props.modelValue changes
+watchEffect(() => {
+  showDialog.value = props.modelValue;
+});
+
 const onClose = () => {
   emit('update:modelValue', false);
 };
 </script>
 
 <template>
-  <!-- Dialog wrapper -->
-  <div
-    v-if="modelValue"
-    class="h-full w-full fixed top-0 left-0 z-50 overflow-x-hidden overflow-y-auto backdrop-contrast-75"
-  >
-    <!-- Dialog -->
-    <div
-      class="flex flex-col my-6 mx-auto p-6 max-h-[calc(100vh-50px)] min-h-[250px] w-[750px] bg-white rounded-md shadow-md"
-    >
-      <!-- Title and Close button -->
-      <div class="flex justify-between mb-6">
+  <VDialog v-model="showDialog" persistent max-width="600">
+    <!-- Title and Close button -->
+    <VCard>
+      <VCardTitle class="flex justify-between">
         <h2>{{ props.title }}</h2>
 
-        <div>
-          <button
-            class="circle-button bg-[url('/src/assets/x-mark.svg')] bg-center bg-no-repeat hover:bg-[#2c2c2c14]"
-            @click="onClose"
-          ></button>
-        </div>
-      </div>
+        <VBtn density="compact" variant="text" icon="mdi-close" @click="onClose"></VBtn>
+      </VCardTitle>
 
       <!-- Body -->
-      <div class="grow">
+      <VCardText class="pa-4">
         <slot :close="onClose" :submit="onClose"></slot>
-      </div>
-    </div>
-  </div>
+      </VCardText>
+    </VCard>
+  </VDialog>
 </template>
 
 <style scoped></style>

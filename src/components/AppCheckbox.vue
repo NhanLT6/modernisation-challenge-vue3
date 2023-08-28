@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, toRefs, watchEffect } from 'vue';
+
 interface AppCheckboxProps {
   name?: string;
   checked?: boolean;
@@ -7,27 +9,27 @@ interface AppCheckboxProps {
 }
 
 const props = defineProps<AppCheckboxProps>();
+const { checked, name, ...rest } = toRefs(props);
 
 defineEmits<{
   onChange: [boolean];
 }>();
+
+const checkBoxValue = ref<boolean>(checked?.value ?? false);
+
+watchEffect(() => {
+  checkBoxValue.value = checked?.value ?? false;
+});
 </script>
 
 <template>
-  <input
-    type="checkbox"
-    :checked="props.checked"
-    class="app-checkbox app-checkbox-bg appearance-none rounded shadow-sm shadow-[#131f151a] h-4 w-4 cursor-pointer transition-colors ease-in-out"
-    @change="$emit('onChange', ($event.target as HTMLInputElement)?.checked)"
+  <VCheckbox
+    v-model="checkBoxValue"
+    :name="name"
+    hide-details
+    @update:modelValue="$emit('onChange', $event)"
+    v-bind="rest"
   />
 </template>
 
-<style scoped>
-.app-checkbox-bg {
-  background: url('src/assets/checkbox-bg.svg');
-}
-
-.app-checkbox:checked {
-  background: url('src/assets/checkbox-checked-bg.svg');
-}
-</style>
+<style scoped></style>

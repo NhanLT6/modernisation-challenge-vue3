@@ -23,7 +23,7 @@ const emit = defineEmits(['submit', 'cancel']);
 const toast = useToast();
 
 const validationSchema = object({
-  details: string().required(),
+  details: string().required('Required'),
 });
 
 const initialValues: TaskFormData = {
@@ -31,23 +31,13 @@ const initialValues: TaskFormData = {
   details: props.initialValues?.details ?? '',
 };
 
-const { values, errors, validate, resetForm } = useForm<TaskFormData>({
+const { resetForm, handleSubmit } = useForm<TaskFormData>({
   initialValues,
   validationSchema: toTypedSchema(validationSchema),
 });
 
-const onSubmit = async () => {
+const onSubmit = handleSubmit(async (values) => {
   try {
-    // Force validating form to display error toast
-    // Bad UX, field's error should stay next to field and persistence
-    const isFormValid = (await validate()).valid;
-    if (!isFormValid) {
-      toast.error("One or more required fields haven't been filled in.");
-      console.log('form errors', JSON.stringify(errors.value, null, 2));
-      return;
-    }
-
-    // Submit form when it's valid
     const request: UpsertTaskRequest = {
       details: values.details,
     };
@@ -61,7 +51,7 @@ const onSubmit = async () => {
   } catch (e) {
     toast.error('Failed to save task. Error: ' + (e as Error).message);
   }
-};
+});
 
 const onCancel = () => {
   resetForm();
@@ -73,17 +63,10 @@ const onCancel = () => {
   <AppTextarea name="details" label="Details" required />
 
   <!-- Form actions -->
-  <div class="flex justify-end mt-6">
-    <button
-      class="h-9 px-4 mr-4 bg-transparent border border-[#00b2d5] text-[#00b2d5] rounded-full transition-colors ease-in-out"
-      @click="onCancel"
-    >
-      Cancel
-    </button>
+  <div class="flex justify-end mt-6 gap-2">
+    <VBtn variant="tonal" @click="onCancel">Cancel</VBtn>
 
-    <button class="h-9 px-4 bg-[#00b2d5] text-white rounded-full transition-colors ease-in-out" @click="onSubmit">
-      Save
-    </button>
+    <VBtn color="primary" @click="onSubmit">Save</VBtn>
   </div>
 </template>
 

@@ -8,6 +8,7 @@
   "importOrder": [
     "^vue$",
     "<THIRD_PARTY_MODULES>",
+    "^vuetify",
     "^@/api(.*)$",
     "^@/app/(.*)$",
     "^@/asset/(.*)$",

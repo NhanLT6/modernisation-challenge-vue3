@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 
+import vuetify from '@/plugins/vuetify.ts';
 import { createPinia } from 'pinia';
 import Toast, { POSITION, PluginOptions as ToastOptions } from 'vue-toastification';
 
@@ -21,5 +22,6 @@ const toastOptions: ToastOptions = {
 
 app.use(pinia);
 app.use(Toast, toastOptions);
+app.use(vuetify);
 
 app.mount('#app');

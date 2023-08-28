@@ -89,7 +89,7 @@ watch([showDialog], () => {
 </script>
 
 <template>
-  <h1>Tasks</h1>
+  <h1 class="mb-4">Tasks</h1>
 
   <AppTable
     :columns="columns"
@@ -107,7 +107,7 @@ watch([showDialog], () => {
     </template>
   </AppTable>
 
-  <AppDialog ref="dialogRef" v-model="showDialog" :title="dialogTitle">
+  <AppDialog v-model="showDialog" :title="dialogTitle">
     <template v-slot="{ close }">
       <TaskForm :initialValues="editingTask" @submit="close" @cancel="close" />
     </template>
