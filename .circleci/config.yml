@@ -2,16 +2,21 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.7
+  
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+
+      # Install pnpm
+      - run: npm install -g pnpm
+      - run: pnpm install
+
+      - run: pnpm build
 
 workflows:
   build-and-test:
     jobs:
-      - build:
-          steps:
-            - checkout
-
-            # Install pnpm
-            - run: npm install -g pnpm
-            - run: pnpm install
-
-            - run: pnpm build
+      - build
+            
