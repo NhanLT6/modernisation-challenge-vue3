@@ -19,7 +19,7 @@ vite
 ## Features
 
 - Built with [Vue3](https://vuejs.org/guide/introduction.html) and [Typescript](https://www.typescriptlang.org/)
-- Code quantity and formatting included: `eslint`, `stylelint`, `prettier`
+- Code quality check and formatting packages included: `eslint`, `stylelint`, `prettier`
 - Form validation with [VeeValidate](https://vee-validate.logaretm.com/v4/) and [yup](https://github.com/jquense/yup)
 - Styled with [TailwindCss](https://tailwindcss.com/)
 - API call with [Axios](https://axios-http.com/docs/api_intro)
