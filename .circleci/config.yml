@@ -10,7 +10,10 @@ jobs:
       - checkout
 
       # Install pnpm
-      - run: npm install -g pnpm
+      - node/with-cache:
+          steps:
+            - run: npm install -g pnpm
+            
       - run: pnpm install
 
       - run: pnpm build
