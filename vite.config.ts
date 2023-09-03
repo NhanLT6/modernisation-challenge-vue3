@@ -5,6 +5,7 @@ import eslintPlugin from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/modernisation-challenge-vue3/' : '/',
   plugins: [vue(), eslintPlugin()],
   resolve: {
     alias: [

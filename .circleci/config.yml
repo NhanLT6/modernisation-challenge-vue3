@@ -8,11 +8,31 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: npm install -g pnpm # Install pnpm
-      - run: pnpm install
-      - run: pnpm build
+
+      - restore_cache:
+          keys:
+            - app-deps-{{ checksum "package.json" }}
+
+      - run: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: app-deps-{{ checksum "package.json" }}
+
+      - run: yarn build
+
+      - run: echo 'https://nhanlt6.github.io/modernisation-challenge-vue3/' > dist/CNAME
+
+  deploy:
+    executor: node/default
+    steps:
+      - run: npx gh-pages --dist dist --dotfiles --add --message "Deploy to GitHub Pages"
 
 workflows:
-  build-and-test:
+  build-and-deploy:
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
