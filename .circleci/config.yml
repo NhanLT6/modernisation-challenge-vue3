@@ -18,7 +18,7 @@ jobs:
           key: app-deps-{{ checksum "package.json" }}
       - run: yarn build
       - run: echo 'https://nhanlt6.github.io/modernisation-challenge-vue3/' > dist/CNAME
-      - run: Copy-Item -Path ".\dist\*" -Destination ".\public" -Recurse
+      - run: cp -r ".\dist\*" ".\public"
 
   deploy:
     executor: node/default
