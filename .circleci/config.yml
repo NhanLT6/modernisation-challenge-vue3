@@ -28,20 +28,13 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: npx gh-pages --dist public --add --message "Deploy to GitHub Pages"
-
-  deploy-without-gh-pages:
-    executor: node/default
-    steps:
-      - checkout
       - attach_workspace:
           at: .
       - run: git config --global user.name "Nhan Le"
       - run: git config --global user.email "letrongnhan1306@gmail.com"
       - run: git clone https://github.com/NhanLT6/modernisation-challenge-vue3.git
       - run: cd modernisation-challenge-vue3 && git checkout gh-pages
-      - run: ls -R
-      - run: cp -r ./dist/* .
+      - run: cp -r ./dist/* . # Copy dist folder from build step to root
       - run: git add .
       - run: git commit -m "Deploy to GitHub Pages"
       - run: git push origin gh-pages
@@ -50,7 +43,7 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      - deploy-without-gh-pages:
+      - deploy:
           requires:
             - build
           filters:
