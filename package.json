@@ -3,10 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://nhanlt6.github.io/modernisation-challenge-vue3/",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-gh-pages": "gh-pages -d dist"
   },
   "dependencies": {
     "@vee-validate/yup": "^4.11.1",
