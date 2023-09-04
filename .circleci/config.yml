@@ -18,12 +18,12 @@ jobs:
           key: app-deps-{{ checksum "package.json" }}
       - run: yarn build
       - run: echo 'https://nhanlt6.github.io/modernisation-challenge-vue3/' > dist/CNAME
-      - run: cp -r ".\dist\*" ".\public"
+      - run: cp -r dist public
 
   deploy:
     executor: node/default
     steps:
-      - run: npx gh-pages --dist ".\public" --add --message "Deploy to GitHub Pages"
+      - run: npx gh-pages --dist public --add --message "Deploy to GitHub Pages"
 
 workflows:
   build-and-deploy:
