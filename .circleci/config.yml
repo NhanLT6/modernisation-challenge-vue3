@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.1.0
-  github: circleci/github@1.0.6
+  gh: circleci/github-cli@2.2.0
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
           at: .
       - run: git config --global user.name "Nhan Le"
       - run: git config --global user.email "letrongnhan1306@gmail.com"
-      - run: git clone https://github.com/nhanlt6/modernisation-challenge-vue3.git
+      - run: gh clone https://github.com/nhanlt6/modernisation-challenge-vue3.git
       - run: cd modernisation-challenge-vue3
       - run: git checkout gh-pages
       - run: cp -r ../dist/* .
