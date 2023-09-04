@@ -33,6 +33,7 @@ jobs:
   deploy-without-gh-pages:
     executor: node/default
     steps:
+      - checkout
       - attach_workspace:
           at: .
       - run: git config --global user.name "Nhan Le"
