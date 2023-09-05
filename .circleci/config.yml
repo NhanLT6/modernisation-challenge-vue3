@@ -36,7 +36,7 @@ jobs:
       - run: cd modernisation-challenge-vue3
       - run: git checkout gh-pages
       - run: git branch
-      - run: ls -al $CIRCLE_WORKING_DIRECTORY # List all directories inside workspace
+      - run: echo $CIRCLE_WORKING_DIRECTORY # List all directories inside workspace
       - run: ls -lS # List all directories inside current folder
       - run: cp -r ./dist/* . # Copy dist folder from build step to root
       - run: git add .
