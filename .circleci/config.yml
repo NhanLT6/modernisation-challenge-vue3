@@ -36,6 +36,7 @@ jobs:
       - run: cd modernisation-challenge-vue3
       - run: git checkout gh-pages
       - run: git branch
+      - run: ls -lS
       - run: cp -r ./dist/* . # Copy dist folder from build step to root
       - run: git add .
       - run: git commit -m "Deploy to GitHub Pages"
