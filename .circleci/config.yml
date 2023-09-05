@@ -7,6 +7,7 @@ orbs:
 jobs:
   build:
     executor: node/default
+    working_directory: ~/project
     steps:
       - checkout
       - restore_cache:
@@ -29,7 +30,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/project/workspace
 
       # Clone the repo from git
       - run: git config --global user.name "Nhan Le"
