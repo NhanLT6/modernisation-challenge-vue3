@@ -20,7 +20,7 @@ jobs:
       - run: yarn build
       - run: echo 'https://nhanlt6.github.io/modernisation-challenge-vue3/' > dist/CNAME
       - persist_to_workspace:
-          root: .
+          root: mc/workspace
           paths:
             - dist
 
@@ -29,7 +29,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: .
+          at: mc/workspace
 
       # Clone the repo from git
       - run: git config --global user.name "Nhan Le"
