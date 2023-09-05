@@ -34,10 +34,10 @@ jobs:
       - run: git config --global user.email "letrongnhan1306@gmail.com"
       - run: git clone https://github.com/NhanLT6/modernisation-challenge-vue3.git
       - run: cd modernisation-challenge-vue3 && git checkout gh-pages
+      - run: git branch
       - run: cp -r ./dist/* . # Copy dist folder from build step to root
       - run: git add .
       - run: git commit -m "Deploy to GitHub Pages"
-      - run: git branch
       - run: git push origin gh-pages
 
 workflows:
