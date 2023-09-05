@@ -30,15 +30,19 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+
+      # Clone the repo from git
       - run: git config --global user.name "Nhan Le"
       - run: git config --global user.email "letrongnhan1306@gmail.com"
       - run: git clone https://github.com/NhanLT6/modernisation-challenge-vue3.git
       - run: cd modernisation-challenge-vue3
+
       - run: git checkout gh-pages
-      - run: git branch
-      - run: echo $CIRCLE_WORKING_DIRECTORY # List all directories inside workspace
-      - run: ls -lS # List all directories inside current folder
-      - run: cp -r ./dist/* . # Copy dist folder from build step to root
+
+      # Copy dist folder from build step to root
+      - run: cp -r ./dist/* .
+
+      # Commit new changes and push to gh-pages branch
       - run: git add .
       - run: git commit -m "Deploy to GitHub Pages"
       - run: git push origin gh-pages
